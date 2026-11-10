@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/banner.svg" alt="A-Light — GPU lightmapper for Unity" width="100%">
+  <img src="docs/banner.png" alt="A-Light — GPU lightmapper for Unity" width="100%">
 </p>
 
 <p align="center">
@@ -10,7 +10,7 @@
 
 # A-Light
 
-basically Bakery but it works on AMD 💀
+basically Bakery but it works on AMD 🤷
 
 i have an AMD gpu and Bakery straight up refuses to bake on anything that isnt NVIDIA, so i made my own lightmapper. it runs on compute shaders instead of CUDA so it works on AMD, NVIDIA and Intel. it also has a Bakery Transfer button that turns all your Bakery lights into A-Light lights so you dont have to redo your whole map
 
