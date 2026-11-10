@@ -33,8 +33,6 @@ its still in beta so expect some weird stuff. if something breaks pls open an is
 2. in unity go **Assets › Import Package › Custom Package** and import it
 3. open **A-Light › Render Lightmaps** in the top menu bar
 
-if the package wont import for some reason, unzip `A-Light-folder.zip` into your Assets folder instead
-
 you need **Unity 2022.3 or newer**. thats what i use
 
 ## switching from Bakery
