@@ -8,6 +8,9 @@
   <img alt="Status: beta" src="https://img.shields.io/badge/status-beta-8a6cff">
 </p>
 
+<img alt="Top language" src="https://img.shields.io/github/languages/top/WestTools/A-Light">
+<img alt="Languages" src="https://img.shields.io/github/languages/count/WestTools/A-Light">
+
 DOES NOT USE ANY BAKERY SCRIPTS, AND DOES NOT CONTAIN A CRACKED VERSION OF BAKERY.
 
 # A-Light
