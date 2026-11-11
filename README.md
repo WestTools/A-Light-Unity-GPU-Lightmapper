@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img src="docs/languages.svg" alt="Languages: C# 81.6%, HLSL 11.0%, ShaderLab 7.4%" width="100%">
+  <img src="docs/languages.svg" alt="Languages: C# 83.4%, HLSL 10.0%, ShaderLab 6.6%" width="100%">
 </p>
 
 DOES NOT USE ANY BAKERY SCRIPTS, AND DOES NOT CONTAIN A CRACKED VERSION OF BAKERY.
@@ -33,6 +33,9 @@ its still in beta so expect some weird stuff. if something breaks pls open an is
 - light filters (stained glass style coloured light)
 - transparency that actually lets light through glass, either cutout or partial
 - each scene gets its own lightmap folder, so baking one scene never messes up another
+- works on Quest/Android and mobile too, lightmaps import the same way Bakery's do so they look right with RGBM encoding
+- handles meshes made of quads, not just triangles
+- saves the scene for you after baking so your lightmaps dont get scrambled when you reopen unity (you can turn it off)
 - **volumetric lights**: light beams, point glows, floating dust, flicker and pulse effects, and beams that get cut off by walls. all under **GameObject › Light › A-Light › Volumetric Lights**
 
 ## how to install
@@ -44,6 +47,10 @@ its still in beta so expect some weird stuff. if something breaks pls open an is
 you need **Unity 2022.3 or newer**. thats what i use
 
 when updating, delete the `Assets/A-Light` folder first, then import the new version
+
+### good starting settings
+
+the defaults are what i use: **Texels per unit 10**, **Bounces 3**, **GI samples 80**, **Emissive boost 0**. if your shadows look too bright or washed out, check **Emissive boost** is on 0. want sharper shadows? raise **Texels per unit**, it just takes longer to bake
 
 ## switching from Bakery
 
@@ -92,6 +99,13 @@ fake light beams and glows, like light shining through dust or fog. go to **Game
 beams have soft edges, glare when you look into the light, fade where they touch walls and when the camera gets close, optional 3D fog noise, and colour gradients. they dont affect baking at all, theyre just for looks
 
 works on the built-in render pipeline. soft edges where the beam hits walls need the camera depth texture, A-Light turns that on for you
+
+## addons
+
+addons are separate unitypackages that add extra stuff to A-Light. import one and it shows up in the **Addons** tab of the A-Light window. you need A-Light installed, without it they just do nothing
+
+- **Lightmap Switching**: bake a few lighting setups (day and night, lights on and off) and switch between them in game. put each setup's lights in its list, hit **Bake All Sets**, then call `SetLighting(index)`, `SetLightingByName(name)`, `Next()` or `Previous()` on the switcher, for example from a button
+- **Live Bake Preview**: bakes a rough quick version of your lighting while you move lights around, so you dont have to do a full bake every time. hit **Stop Preview** and your real bake comes back
 
 ## contributing
 
