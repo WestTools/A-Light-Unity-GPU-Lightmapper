@@ -22,12 +22,13 @@ its still in beta so expect some weird stuff. if something breaks pls open an is
 
 - bakes lightmaps on basically any gpu (DX11 works fine)
 - hardware ray tracing if youre on Unity 6 / 2023.1+ with DX12 (AMD RX 6000+, RTX, Intel Arc)
-- **Bakery Transfer**: converts Bakery point, direct, sky and light mesh lights, and copies your Bakery bake settings too
+- **Bakery Transfer**: converts Bakery point, direct, sky and light mesh lights, light filters and volumes, and copies your Bakery bake settings too
 - direct light, bounce light (GI), sky light, emissive stuff, area lights, AO, shadowmask, light probes, all the normal stuff
 - soft shadows + a denoiser so it doesnt look crusty
 - reads material colours through each shader's Meta pass, so custom shaders bake with the right colours
-- light filters (stained glass style coloured light) and skinned mesh shadows
+- light filters (stained glass style coloured light)
 - transparency that actually lets light through glass, either cutout or partial
+- each scene gets its own lightmap folder, so baking one scene never messes up another
 
 ## how to install
 
@@ -37,13 +38,15 @@ its still in beta so expect some weird stuff. if something breaks pls open an is
 
 you need **Unity 2022.3 or newer**. thats what i use
 
+when updating, delete the `Assets/A-Light` folder first, then import the new version
+
 ## switching from Bakery
 
 1. **keep Bakery installed** for this part, the transfer tool needs to read its components (it still compiles on AMD, it just cant bake)
 2. go to **A-Light › Bakery Transfer** and hit **Transfer**
 3. open the lightmapper and hit **Render**
 
-it doesnt touch your Bakery lightmaps, A-Light saves to `Assets/ALightLightmaps/` so you can always go back
+it doesnt touch your Bakery lightmaps, A-Light saves to `Assets/ALightLightmaps/` so you can always go back. theres also **Use Bakery** / **Use A-Light** buttons in the transfer window to swap between them whenever you want
 
 | Bakery | A-Light |
 |---|---|
@@ -52,6 +55,7 @@ it doesnt touch your Bakery lightmaps, A-Light saves to `Assets/ALightLightmaps/
 | Bakery Sky Light | A-Light Sky Light |
 | Bakery Light Mesh | A-Light Area Light |
 | Bakery Light Filter | A-Light Light Filter |
+| Bakery Volume | A-Light Light Volume |
 
 ## starting from scratch
 
@@ -59,10 +63,13 @@ it doesnt touch your Bakery lightmaps, A-Light saves to `Assets/ALightLightmaps/
 2. add lights from **GameObject › Light › A-Light**
 3. hit **Render**
 
-## stuff that doesnt work yet
+## SH, MonoSH, RNM, light volumes and skinned meshes
 
-- RNM / SH / MonoSH directional modes and light volumes. these need special shaders that normal Unity shaders cant read, so use Dominant Direction or Baked Normal Maps instead
-- skinned meshes cast shadows in their current pose but can't be lightmapped themselves. thats a Unity limit, they use light probes instead
+these need the **A-Light/Lit** shader on your materials, or `#include "ALight.cginc"` in your own shader
+
+- set **Directional mode** to **MonoSH**, **SH** or **RNM** for sharper normal-map lighting
+- add **GameObject › Light › A-Light › Light Volume** to bake a 3D grid of lighting for moving objects. objects using A-Light/Lit inside the box use it instead of light probes
+- **skinned meshes get lightmaps** 🔥 unity normally cant do this at all. A-Light bakes them in the pose theyre in when you hit Render, so its best for stuff that doesnt move much
 
 ## contributing
 
