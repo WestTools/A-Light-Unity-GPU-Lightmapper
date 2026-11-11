@@ -8,6 +8,8 @@
   <img alt="Status: beta" src="https://img.shields.io/badge/status-beta-8a6cff">
 </p>
 
+DOES NOT USE ANY BAKERY SCRIPTS, AND DOES NOT CONTAIN A CRACKED VERSION OF BAKERY.
+
 # A-Light
 
 a GPU lightmapper for Unity that actually works on AMD 😉
