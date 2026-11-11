@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img src="docs/languages.svg" alt="Languages: C# 81.2%, HLSL 13.1%, ShaderLab 5.7%" width="100%">
+  <img src="docs/languages.svg" alt="Languages: C# 81.6%, HLSL 11.0%, ShaderLab 7.4%" width="100%">
 </p>
 
 DOES NOT USE ANY BAKERY SCRIPTS, AND DOES NOT CONTAIN A CRACKED VERSION OF BAKERY.
@@ -33,6 +33,7 @@ its still in beta so expect some weird stuff. if something breaks pls open an is
 - light filters (stained glass style coloured light)
 - transparency that actually lets light through glass, either cutout or partial
 - each scene gets its own lightmap folder, so baking one scene never messes up another
+- **volumetric lights**: light beams, point glows, floating dust, flicker and pulse effects, and beams that get cut off by walls. all under **GameObject › Light › A-Light › Volumetric Lights**
 
 ## how to install
 
@@ -74,6 +75,23 @@ these need the **A-Light/Lit** shader on your materials, or `#include "ALight.cg
 - set **Directional mode** to **MonoSH**, **SH** or **RNM** for sharper normal-map lighting
 - add **GameObject › Light › A-Light › Light Volume** to bake a 3D grid of lighting for moving objects. objects using A-Light/Lit inside the box use it instead of light probes
 - **skinned meshes get lightmaps** 🔥 unity normally cant do this at all. A-Light bakes them in the pose theyre in when you hit Render, so its best for stuff that doesnt move much
+
+## volumetric lights
+
+fake light beams and glows, like light shining through dust or fog. go to **GameObject › Light › A-Light › Volumetric Lights**
+
+- **Volumetric Spot Light**: a spot light with a beam that matches its colour, angle and range
+- **Volumetric Point Light**: a point light with a glowing ball of light around it
+- **Volumetric Beam (3D)** / **(2D)**: just the beam. 2D is a cheaper flat one that always faces the camera
+- **Point Glow**: just the glow
+- **Add To Selected Lights**: already got lights? select them and hit this. spot lights get a beam, point lights get a glow
+- **Dust**: little floating specks inside the beam
+- **Occlusion**: cuts the beam off when it hits a wall (the wall needs a collider)
+- **Flicker** / **Pulse**: makes the light flicker or slowly pulse in play mode. also works on a normal Unity Light on the same object
+
+beams have soft edges, glare when you look into the light, fade where they touch walls and when the camera gets close, optional 3D fog noise, and colour gradients. they dont affect baking at all, theyre just for looks
+
+works on the built-in render pipeline. soft edges where the beam hits walls need the camera depth texture, A-Light turns that on for you
 
 ## contributing
 
