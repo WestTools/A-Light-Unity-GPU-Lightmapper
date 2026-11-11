@@ -8,8 +8,9 @@
   <img alt="Status: beta" src="https://img.shields.io/badge/status-beta-8a6cff">
 </p>
 
-<img alt="Top language" src="https://img.shields.io/github/languages/top/WestTools/A-Light-Unity-GPU-Lightmapper">
-<img alt="Languages" src="https://img.shields.io/github/languages/count/WestTools/A-Light-Unity-GPU-Lightmapper">
+<p align="center">
+  <img src="docs/languages.svg" alt="Languages: C# 81.2%, HLSL 13.1%, ShaderLab 5.7%" width="100%">
+</p>
 
 DOES NOT USE ANY BAKERY SCRIPTS, AND DOES NOT CONTAIN A CRACKED VERSION OF BAKERY.
 
