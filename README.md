@@ -9,10 +9,10 @@
 </p>
 
 <p align="center">
-  <img src="docs/languages.svg" alt="Languages: C# 83.4%, HLSL 10.0%, ShaderLab 6.6%" width="100%">
+  <img src="docs/languages.svg" alt="Languages: C# 82.2%, HLSL 10.7%, ShaderLab 7.1%" width="100%">
 </p>
 
-### PLEASE KEEP IN MIND THAT THIS IS NOT A MAGICAL TOOL. YOUR GPU MUST BE SOMEWHAT COMPATIBLE TO GET A GOOD RESULT. TRY LOWER THE TILE SIZE AND SAMPLES PER DISPATCH IF YOUR UNITY CRASHES. THE DEFAULT SETTINGS ARE DESIGNED FOR AND TESTED ON HIGHER END GPUS.
+### PLEASE KEEP IN MIND THAT THIS IS NOT A MAGICAL TOOL. YOUR GPU MUST BE SOMEWHAT COMPATIBLE TO GET A GOOD RESULT. TRY LOWER THE TILE SIZE AND SAMPLES PER DISPATCH IF YOUR UNITY CRASHES, OR GET THE AUTO SETTINGS ADDON TO DO IT FOR YOU. THE DEFAULT SETTINGS ARE DESIGNED FOR AND TESTED ON HIGHER END GPUS.
 
 DOES NOT USE ANY BAKERY SCRIPTS, AND DOES NOT CONTAIN A CRACKED VERSION OF BAKERY.
 
@@ -35,9 +35,11 @@ its still in beta so expect some weird stuff. if something breaks pls open an is
 - light filters (stained glass style coloured light)
 - transparency that actually lets light through glass, either cutout or partial
 - each scene gets its own lightmap folder, so baking one scene never messes up another
-- works on Quest/Android and mobile too, lightmaps import the same way Bakery's do so they look right with RGBM encoding
+- works on Quest/Android and mobile too, lightmaps import the same way Bakery's do so they look right with RGBM encoding (sRGB by default, you can change it in the settings)
 - handles meshes made of quads, not just triangles
 - saves the scene for you after baking so your lightmaps dont get scrambled when you reopen unity (you can turn it off)
+- no weird dark outlines where objects overlap or poke into each other (like blocks stacked into a wall or panels going into the floor)
+- warns you with a red bar if your settings are too heavy for your GPU, and tells you before baking if your GPU cant run A-Light at all (you can still bake anyway if you want)
 - **volumetric lights**: light beams, point glows, floating dust, flicker and pulse effects, and beams that get cut off by walls. all under **GameObject › Light › A-Light › Volumetric Lights**
 
 ## how to install
@@ -53,6 +55,15 @@ when updating, delete the `Assets/A-Light` folder first, then import the new ver
 ### good starting settings
 
 the defaults are what i use: **Texels per unit 10**, **Bounces 3**, **GI samples 80**, **Emissive boost 0**. if your shadows look too bright or washed out, check **Emissive boost** is on 0. want sharper shadows? raise **Texels per unit**, it just takes longer to bake
+
+### weaker gpu?
+
+if you see a red bar saying **YOUR SETTINGS MAY CAUSE YOUR UNITY TO CRASH**, your settings are probably too much for your GPU. grab the **Auto Settings** addon and hit one button, or lower these yourself:
+
+- **Tile size** to 256 (or 128 on really old cards)
+- **Samples per dispatch** to 8 (or 4)
+- **GI samples** to 64 or less
+- **Texels per unit** to 8 or less if you have 4 GB of VRAM or less
 
 ## switching from Bakery
 
@@ -108,6 +119,9 @@ addons are separate unitypackages that add extra stuff to A-Light. import one an
 
 - **Lightmap Switching**: bake a few lighting setups (day and night, lights on and off) and switch between them in game. put each setup's lights in its list, hit **Bake All Sets**, then call `SetLighting(index)`, `SetLightingByName(name)`, `Next()` or `Previous()` on the switcher, for example from a button
 - **Live Bake Preview**: bakes a rough quick version of your lighting while you move lights around, so you dont have to do a full bake every time. hit **Stop Preview** and your real bake comes back
+- **Auto Settings**: reads your GPU and your scene, then sets A-Light up with one click so it bakes as good as your GPU can handle without crashing. shows an estimated bake time, memory use and a quality rating before you change anything
+
+get them all on [github](https://github.com/WestTools)
 
 ## contributing
 
